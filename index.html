@@ -1,23 +1,648 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "당뇨암보험 가입센터",
+      "url": "https://yourdomain.com",
+      "description": "당뇨 환자 맞춤형 암보험 비교 및 추천 서비스",
+      "provider": {
+        "@type": "Organization",
+        "name": "당뇨암보험 정보 제공 플랫폼",
+        "url": "https://yourdomain.com"
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: #f7f9fc; /* 부드러운 배경색 */
+      color: #333;
+      word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
+      font-size: 16px;
+    }
+    header {
+      background-color: #004d99; /* 신뢰감을 주는 짙은 파란색 */
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 0.5rem 0 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      line-height: 1.3;
+    }
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover {
+      color: #ffe066; /* 밝은 노란색 */
+      border-bottom: 2px solid #ffe066;
+      transform: translateY(-2px);
+    }
+    main {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+      border-radius: 12px;
+    }
+    h1, h2 {
+      color: #003366; /* 진한 남색 */
+      font-weight: 700;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-bottom: 3px solid #e0f0ff;
+      line-height: 1.4;
+    }
+    h2 {
+      font-size: 2.2rem;
+      border-bottom: 3px solid #e0f0ff;
+    }
+    h3 {
+      color: #004d99;
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      font-weight: 600;
+    }
+    p {
+      text-align: justify;
+      margin-bottom: 1.8rem;
+      line-height: 1.8;
+    }
+    .main-section {
+      padding: 1rem 0;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 1.2rem;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    th {
+      background-color: #004d99;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+    .highlight {
+      background-color: #e6f7ff;
+      border-left: 5px solid #0066cc;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      border-radius: 5px;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #ff6600; /* 강조색 오렌지 */
+      color: white;
+      font-weight: 700;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 2.5rem auto;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .cta-button:hover {
+      background-color: #e65c00;
+      transform: translateY(-2px);
+    }
+    .keyword-tags {
+      margin: 3rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .keyword-tags a {
+      background-color: #e0f0ff;
+      color: #0066cc;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: 1px solid #b3d1ff;
+    }
+    .keyword-tags a:hover {
+      background-color: #b3d1ff;
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e0eaf1;
+      margin-top: 3rem;
+      border-top: 1px solid #d0dbe4;
+    }
+    .external-link {
+      display: inline-block;
+      color: #0066cc;
+      font-weight: 500;
+      margin-top: 1rem;
+      text-decoration: underline;
+    }
+    dl dt {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      color: #0066cc;
+      background-color: #f5fafd;
+      padding: 1rem;
+      border-left: 5px solid #0066cc;
+      transition: background-color 0.3s ease;
+    }
+    dl dt:hover {
+      background-color: #e6f2ff;
+    }
+    dl dd {
+      margin: 0.5rem 0 1.5rem 1rem;
+      padding-left: 1rem;
+      border-left: 2px dashed #ccc;
+      display: none;
+    }
+    dl dt.active + dd {
+      display: block;
+    }
+    .input-form {
+      background-color: #f9f9f9;
+      padding: 2.5rem;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin: 2rem 0;
+    }
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #555;
+    }
+    .input-group input[type="text"],
+    .input-group input[type="date"],
+    .input-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    .input-group input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: #004d99;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #003366;
+    }
+    /* 그래프 스타일 (CSS only simple graph) */
+    .graph-container {
+      margin: 3rem 0;
+    }
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      height: 300px;
+      border-left: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .bar {
+      width: 80%;
+      margin: 0 10%;
+      height: 20px;
+      background-color: #0066cc;
+      color: white;
+      text-align: right;
+      line-height: 20px;
+      padding-right: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      transition: width 0.5s ease;
+      font-size: 0.9rem;
+    }
+    .label {
+      font-size: 0.9rem;
+      color: #555;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+    .graph-description {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>당뇨암보험 가입, 2026년 최적의 선택은?</h1>
+    <p>당뇨병 환자를 위한 암보험 가입 조건부터 보험료 비교, 추천 순위까지 상세 분석</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#가입조건">가입 조건</a></li>
+        <li><a href="#보험료비교">보험료 비교</a></li>
+        <li><a href="#상품추천">추천 상품</a></li>
+        <li><a href="#유병자보험">유병자 보험</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="가입조건" class="main-section">
+      <h2>당뇨 환자, 암보험 가입이 어려운 이유와 해결책</h2>
+      <p>당뇨병은 단순히 혈당 관리를 넘어 다양한 합병증을 유발하는 만성 질환입니다. 특히, 암 발생 위험을 증가시킨다는 연구 결과들이 지속적으로 발표되면서, 당뇨 환자의 암보험 가입은 더욱 중요해지고 있습니다. 하지만 보험사 입장에서는 당뇨병을 '고위험군 질병'으로 분류하기 때문에 일반적인 건강한 사람과 동일한 조건으로 **암보험 가입**을 승인받기가 쉽지 않습니다. 일반 암보험 가입 시, 보험사들은 당뇨병 병력 때문에 **가입 거절**하거나, **특정 부위(예: 췌장암) 보장 제외** 조건을 걸기도 합니다.</p>
+      <p>이러한 문제점을 해결하기 위해 최근 보험 시장에서는 **유병자 보험** 또는 **간편심사 보험**이라는 새로운 상품들이 등장했습니다. 이들 상품은 과거 병력이나 투약 여부 등 까다로운 심사 조건을 완화하여 당뇨 환자도 비교적 쉽게 가입할 수 있도록 설계되었습니다. 2026년 기준으로, **당뇨 환자 암보험** 상품들은 일반 보험 대비 보장 내용이나 보험료 측면에서 큰 차이가 없어지고 있는 추세입니다. 저희 사이트에서는 이러한 **유병자 암보험** 상품들을 심층적으로 비교 분석하여 고객님께 최적의 선택지를 제안해 드립니다. 특히, **당뇨암보험 가격**에 대한 궁금증을 해소하고 **당뇨 환자 암보험 가입 순위**를 통해 현명한 선택을 돕고자 합니다.</p>
+
+      <h3>당뇨암보험 가입 시 고려해야 할 핵심 요소</h3>
+      <p>**당뇨암보험 가입**을 고려할 때, 단순히 **보험료**의 저렴함만을 기준으로 삼아서는 안 됩니다. **당뇨병 유병자**의 특성을 고려하여 아래와 같은 세부 사항을 꼼꼼히 확인해야 합니다.</p>
+      <ul>
+        <li>**간편심사 조건:** 3.2.5 간편심사(3개월 이내 입원·수술·추가 검사 소견, 2년 이내 입원·수술, 5년 이내 암 진단) 외의 조건으로 가입이 가능한지 여부.</li>
+        <li>**보장 범위:** 일반 암 진단금 외에 고액암, 소액암, 유사암 진단금의 보장 범위와 금액을 확인해야 합니다. 특히 **췌장암**은 당뇨병 합병증과 밀접한 관련이 있어 **보장 범위**에 포함되는지 여부가 중요합니다.</li>
+        <li>**보험료 산출 기준:** 당뇨병 진단 시기, 인슐린 투여 여부, 당뇨약 복용 기간 등에 따라 **보험료**가 달라지므로 정확한 정보 입력이 필수입니다.</li>
+        <li>**갱신형 vs 비갱신형:** **갱신형 암보험**은 초기 보험료가 저렴하지만 나이가 들수록 보험료가 상승합니다. **비갱신형 암보험**은 초기 보험료가 높지만 한 번 정해진 보험료를 만기까지 유지할 수 있어 장기적인 관점에서 유리할 수 있습니다.</li>
+      </ul>
+    </section>
+
+    <div class="keyword-tags" aria-label="연관 검색 키워드">
+      <a href="#보험료비교">당뇨암보험 가격</a>
+      <a href="#상품추천">당뇨암보험 추천</a>
+      <a href="#유병자보험">유병자 암보험</a>
+      <a href="#가입조건">당뇨환자 암보험 가입 조건</a>
+      <a href="#보험료비교">간편심사 암보험</a>
+      <a href="#상품추천">당뇨환자 암보험 순위</a>
+      <a href="#가입조건">인슐린 투여 암보험</a>
+      <a href="#유병자보험">고혈압 암보험</a>
+      <a href="#가입조건">당뇨병 합병증 암보험</a>
+      <a href="#보험료비교">암보험 비교</a>
+      <a href="#보험료비교">암보험 저렴한곳</a>
+      <a href="#상품추천">내돈내산 당뇨암보험 후기</a>
+      <a href="#유병자보험">유병력자 암보험 장점</a>
+      <a href="#유병자보험">유병자 암보험 단점</a>
+      <a href="#보험료비교">2026 암보험 트렌드</a>
+      <a href="#상품추천">당뇨암보험 가입 요령</a>
+      <a href="#유병자보험">당뇨환자 암보험 비교사이트</a>
+      <a href="#유병자보험">간편심사 보험료</a>
+      <a href="#상품추천">암보험 갱신형 비갱신형 차이점</a>
+      <a href="#가입조건">당뇨환자 보험 가입 거절</a>
+      <a href="#가입조건">만성질환자 보험 가입</a>
+      <a href="#보험료비교">평균 보험료 계산</a>
+      <a href="#상품추천">당뇨환자 암보험 장단점</a>
+      <a href="#상품추천">암보험 가입 팁</a>
+      <a href="#상품추천">암보험 싼곳</a>
+      <a href="#유병자보험">당뇨병 환자 보험 추천</a>
+    </div>
+
+    <section id="보험료비교" class="main-section">
+      <h2>2026년 당뇨암보험 평균 가격 및 보험료 비교 분석</h2>
+      <p>많은 당뇨 환자들이 **당뇨암보험 가격**에 대해 궁금해합니다. **당뇨암보험 비용**은 일반 암보험보다 비쌀 것이라는 막연한 편견을 가지고 있지만, 최근에는 경쟁 심화로 인해 **저렴한** 보험 상품들이 많이 출시되고 있습니다. 2026년 시장 동향을 분석해 보면, **유병자 암보험** 상품의 **예상 보험료**는 과거에 비해 상당히 합리적인 수준으로 하락했습니다. 물론 개인의 건강 상태(당뇨 진단 시기, 합병증 유무 등)와 나이, 성별에 따라 **보험료**는 크게 달라질 수 있습니다.</p>
+
+      <h3>연령별, 성별 당뇨암보험 평균 보험료 예시 (2026년 기준)</h3>
+      <p>다음 표는 40세, 50세, 60세 남녀가 **당뇨암보험**에 가입할 경우의 대략적인 **평균 보험료**를 비교한 예시입니다. (비갱신형, 20년 납, 90세 만기, 일반암 진단금 3천만원 기준)</p>
+      <table>
+        <thead>
+          <tr>
+            <th>연령</th>
+            <th>성별</th>
+            <th>일반 암보험 평균 보험료</th>
+            <th>유병자 암보험 평균 보험료</th>
+            <th>보험료 차이 (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>40대</td>
+            <td>남성</td>
+            <td>약 50,000원</td>
+            <td>약 65,000원</td>
+            <td>약 30% 상승</td>
+          </tr>
+          <tr>
+            <td>40대</td>
+            <td>여성</td>
+            <td>약 35,000원</td>
+            <td>약 45,000원</td>
+            <td>약 28% 상승</td>
+          </tr>
+          <tr>
+            <td>50대</td>
+            <td>남성</td>
+            <td>약 70,000원</td>
+            <td>약 90,000원</td>
+            <td>약 28% 상승</td>
+          </tr>
+          <tr>
+            <td>50대</td>
+            <td>여성</td>
+            <td>약 50,000원</td>
+            <td>약 65,000원</td>
+            <td>약 30% 상승</td>
+          </tr>
+          <tr>
+            <td>60대</td>
+            <td>남성</td>
+            <td>약 90,000원</td>
+            <td>약 120,000원</td>
+            <td>약 33% 상승</td>
+          </tr>
+          <tr>
+            <td>60대</td>
+            <td>여성</td>
+            <td>약 70,000원</td>
+            <td>약 95,000원</td>
+            <td>약 35% 상승</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="graph-description"><em>*위 표의 보험료는 예시이며, 실제 **당뇨암보험 가입** 시 개인별 조건에 따라 다를 수 있습니다. 정확한 **견적**은 상담을 통해 확인하세요.</em></p>
+
+      <h3>보험료를 절약하는 방법: 갱신형/비갱신형 차이점 분석</h3>
+      <p>**당뇨암보험**의 **가입** 시 **보험료**를 절약하기 위한 가장 중요한 선택은 **갱신형**과 **비갱신형** 중에서 어떤 것을 고를지 결정하는 것입니다. 두 유형의 **장단점**을 명확히 이해하고 본인의 재정 상황과 노후 계획에 맞춰 선택해야 합니다.</p>
+      <dl>
+        <dt><strong>갱신형 암보험의 특징 (장점/단점)</strong></dt>
+        <dd><strong>장점:</strong> 초기 **보험료**가 매우 **저렴**합니다. 젊은 나이에 가입할 경우 월 납입액이 적어 부담이 적습니다. **당뇨 환자**도 비교적 쉽게 가입할 수 있도록 설계된 상품이 많습니다.
+        <strong>단점:</strong> 갱신 주기에 따라 **보험료**가 지속적으로 상승합니다. 특히 50~60대에 갱신할 경우 **보험료**가 급격하게 오를 수 있어 은퇴 후 재정 부담이 커질 수 있습니다. 보장 기간 전체로 보면 총 납입액이 **비갱신형**보다 높아질 수 있습니다.</dd>
+        <dt><strong>비갱신형 암보험의 특징 (장점/단점)</strong></dt>
+        <dd><strong>장점:</strong> 한 번 정해진 **보험료**를 만기까지 유지할 수 있습니다. 장기적으로 볼 때 총 납입액이 갱신형보다 **저렴**할 수 있습니다. 노후에도 안정적인 재정 계획을 세울 수 있습니다.
+        <strong>단점:</strong> 초기 **보험료**가 갱신형보다 높습니다. 젊은 나이에 가입하더라도 매월 납입하는 금액이 부담스러울 수 있습니다.</dd>
+      </dl>
+      <p>저희 **당뇨암보험 비교사이트**에서는 고객님의 연령, 재정 상황, 건강 상태에 맞춰 **비갱신형**과 **갱신형** 중 어떤 상품이 더 유리할지 **1:1 맞춤 상담**을 통해 상세히 안내해 드립니다. **내돈내산 후기**를 참고하여 **당뇨암보험**을 현명하게 선택해 보세요.</p>
+    </section>
+
+    <section id="상품추천" class="main-section">
+      <h2>2026년 당뇨 환자를 위한 암보험 가입 순위 및 추천 상품 분석</h2>
+      <p>**당뇨 환자 암보험 가입**을 원하는 고객들이 가장 많이 찾는 정보는 **가입 순위**와 **추천 상품**입니다. 2026년 현재 시장에서는 다양한 보험사들이 **간편심사 암보험**을 경쟁적으로 출시하고 있습니다. 단순한 **암보험 추천**을 넘어, **당뇨 환자**에게 특히 유리한 조건을 제공하는 상품들을 엄선하여 **순위**별로 분석해 보았습니다. **암보험 저렴한곳**을 찾는 것도 중요하지만, 보장 내용을 꼼꼼히 따져봐야 합니다.</p>
+
+      <h3>추천 상품 분석 (가상의 상품 예시)</h3>
+      <p>아래는 2026년 당뇨암보험 시장에서 높은 **가입 순위**를 기록하고 있는 가상의 상품들을 비교한 표입니다. 이 표를 통해 **당뇨암보험 장단점**과 **차이점**을 한눈에 파악할 수 있습니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>A사 (당뇨 특화)</th>
+            <th>B사 (간편 심사형)</th>
+            <th>C사 (고액암 보장 특화)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>가입 연령</td>
+            <td>15세 ~ 70세</td>
+            <td>20세 ~ 75세</td>
+            <td>18세 ~ 65세</td>
+          </tr>
+          <tr>
+            <td>심사 조건</td>
+            <td>3.2.5 간편심사 + 당뇨 관리 정도 심사</td>
+            <td>3.2.5 간편심사</td>
+            <td>3.2.5 간편심사</td>
+          </tr>
+          <tr>
+            <td>보장 내용</td>
+            <td>일반암 진단금 3천만원, 소액암 300만원</td>
+            <td>일반암 진단금 4천만원, 소액암 400만원</td>
+            <td>일반암 진단금 2천만원, 고액암 6천만원</td>
+          </tr>
+          <tr>
+            <td>특징</td>
+            <td>당뇨 합병증 관련 특정암 보장 강화 특약 제공. **당뇨 환자**에게 유리한 조건.</td>
+            <td>**가입** 절차가 매우 간편함. **당뇨**병 유병 기간에 관계없이 심사.</td>
+            <td>**고액암(췌장암, 폐암 등)**에 대한 보장 금액이 높음.</td>
+          </tr>
+          <tr>
+            <td>**장점**</td>
+            <td>**당뇨 환자** 맞춤형 보장 설계 가능.</td>
+            <td>신속한 가입과 높은 진단금.</td>
+            <td>고위험군 암 진단 시 고액 보장.</td>
+          </tr>
+          <tr>
+            <td>**단점**</td>
+            <td>타사 대비 **보험료**가 다소 높을 수 있음.</td>
+            <td>**갱신형** 상품 비중이 높음.</td>
+            <td>일반암 진단금은 상대적으로 낮음.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>당뇨 환자 암보험</strong>은 **내돈내산**으로 가입하기 전에 여러 상품을 꼼꼼히 **비교**해봐야 합니다. 특히 **당뇨병 유병자**는 일반인보다 암 발병률이 높다는 통계에 따라, 보장 금액을 넉넉하게 설정하는 것이 중요합니다. **당뇨 환자 암보험 후기**를 보면, **보험료**가 **저렴한곳**만 찾아 가입했다가 정작 중요한 보장 범위에서 제외된 경우가 많으니 주의해야 합니다.</p>
+
+      <h3>당뇨암보험 가입 요령: "만기 환급형"의 함정</h3>
+      <p>보험 상품을 선택할 때 **만기 환급형**과 **순수 보장형** 중 고민하는 경우가 많습니다. **만기 환급형**은 보험 만기 시 납입한 **보험료** 중 일부 또는 전부를 돌려받는 구조입니다. 이 때문에 많은 사람이 **저렴한 곳**을 찾기보다 환급금을 받는 상품을 선호하기도 합니다. 하지만 **만기 환급형**은 순수 보장형에 비해 월 **보험료**가 훨씬 비쌉니다. 장기간 납부하는 **보험료**에 이자가 붙는 것이 아니기 때문에, 차라리 **순수 보장형**으로 **저렴한** **보험료**를 내고 남는 돈을 저축하는 것이 재테크 측면에서 유리할 수 있습니다. 2026년 현재 전문가들은 순수 보장형을 더 많이 추천하는 추세입니다.</p>
+
+      <div class="highlight">
+        <p><strong>[핵심 요약]</strong> 당뇨암보험 가입 시 체크리스트</p>
+        <ol>
+          <li>**가입 조건** 확인: 간편심사 여부와 심사 기준을 꼼꼼히 확인.</li>
+          <li>**보장 범위** 확인: 일반암 진단금, 고액암 보장, 췌장암 보장 여부.</li>
+          <li>**보험료** 비교: **갱신형/비갱신형** **장단점** 분석 후 선택.</li>
+          <li>**면책 기간** 확인: 가입 후 90일 면책, 1~2년 감액 기간이 있는지 확인.</li>
+        </ol>
+      </div>
+
+    </section>
+
+    <section id="유병자보험" class="main-section">
+      <h2>당뇨병 환자를 위한 유병자 보험의 필요성</h2>
+      <p>당뇨병 환자가 암보험을 **가입**하려는 이유는 명확합니다. 당뇨병 자체가 암 발병률을 높일 수 있다는 연구 결과들이 많기 때문입니다. 특히 **인슐린 투여 암보험**을 찾는 분들은 인슐린 치료가 암 위험을 높일 수 있다는 잘못된 정보나, 합병증 위험 때문에 **보험 가입**에 어려움을 겪는 경우가 많습니다. 하지만 **유병자 보험**은 이러한 만성 질환자들을 위해 특별히 설계된 상품군입니다. **유병자 암보험**은 일반 보험에 비해 심사 절차가 간소화되어, **당뇨 환자**도 비교적 쉽게 가입할 수 있습니다.</p>
+
+      <h3>유병자 보험 vs. 일반 보험 비교</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>일반 보험</th>
+            <th>유병자 보험 (당뇨암보험)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>가입 대상</td>
+            <td>건강한 일반인</td>
+            <td>병력 보유자 (당뇨병, 고혈압 등)</td>
+          </tr>
+          <tr>
+            <td>심사 조건</td>
+            <td>매우 까다로움 (5년 이내 치료 이력 고지 의무)</td>
+            <td>간편 심사 (3.2.5 조건 적용)</td>
+          </tr>
+          <tr>
+            <td>보험료 수준</td>
+            <td>저렴함</td>
+            <td>일반 보험 대비 다소 높음 (위험률 할증)</td>
+          </tr>
+          <tr>
+            <td>보장 범위</td>
+            <td>넓음 (특정 질병 제외 조건 없음)</td>
+            <td>일반 보험과 유사하지만, 특정 질환 제외 조건이 붙을 수 있음</td>
+          </tr>
+          <tr>
+            <td>**장점**</td>
+            <td>**저렴한** **보험료**로 혜택.</td>
+            <td>**가입** 거절 없이 **유병자**도 혜택.</td>
+          </tr>
+          <tr>
+            <td>**단점**</td>
+            <td>**당뇨 환자**는 **가입** 거절 가능성이 높음.</td>
+            <td>**보험료**가 비싸고 **갱신형** 상품 비중이 높음.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>당뇨암보험 가입 후 주의사항: 고지 의무 위반의 위험성</h3>
+      <p>**당뇨암보험** **가입** 시 가장 중요한 것은 **고지 의무**를 정확하게 이행하는 것입니다. 보험사는 **유병자 보험**의 간편심사 조건을 통해 병력 일부를 묻지 않지만, 질문하는 내용에 대해서는 사실대로 고지해야 합니다. 만약 **당뇨병** 진단 사실이나 **인슐린 투여** 사실을 숨기고 **가입**했다가 나중에 보험금 청구 시 밝혀지면, **보험 가입** 자체가 무효 처리되거나 보장을 받지 못할 수 있습니다. **내돈내산 후기**를 보면, **보험료**를 **저렴하게** 하기 위해 고의로 병력을 숨겼다가 큰 손해를 본 사례가 많으니 주의해야 합니다.</p>
+
+      <div class="input-form">
+        <h3>당뇨암보험 무료 견적 신청</h3>
+        <p>고객님의 정보를 입력해 주시면 **당뇨암보험** 전문가가 연락드려 **2026년 최신 상품**의 **보험료 비교** 및 **추천 순위**를 안내해 드립니다. **가입 조건**이 까다로운 **당뇨 환자**분들도 부담 없이 상담받아 보세요. **예상 금액**을 즉시 확인하실 수 있습니다.</p>
+        <form action="#" method="post">
+          <div class="input-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
+          </div>
+          <div class="input-group">
+            <label for="age">생년월일 (예: 19800101)</label>
+            <input type="text" id="age" name="age" pattern="\d{8}" maxlength="8" required placeholder="YYYYMMDD">
+          </div>
+          <div class="input-group">
+            <label for="phone">연락처</label>
+            <input type="text" id="phone" name="phone" required placeholder="휴대폰 번호를 입력하세요">
+          </div>
+          <div class="input-group">
+            <label for="disease_type">질병 종류 (당뇨병, 고혈압, 기타)</label>
+            <select id="disease_type" name="disease_type">
+              <option value="당뇨병">당뇨병</option>
+              <option value="고혈압">고혈압</option>
+              <option value="기타만성질환">기타 만성질환</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="terms">개인정보 수집 및 이용 동의</label>
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">동의합니다. (필수)</label>
+          </div>
+          <button type="submit" class="submit-btn">무료 견적 신청 및 상담 예약</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq" class="main-section">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <dl>
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 당뇨병 진단 후 바로 암보험 가입이 가능한가요?</strong></dt>
+        <dd>A. 당뇨병 진단 시기와 관계없이 **유병자 보험**을 통해 **암보험 가입**이 가능합니다. 다만, 당뇨병 진단 후 합병증이 발생했거나 최근 3개월 이내에 입원, 수술, 추가 검사 소견을 받은 경우에는 **가입**이 어려울 수 있습니다. 보험사마다 심사 기준이 다르므로, 여러 상품을 비교하여 가장 유리한 조건을 찾아야 합니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 당뇨병 환자는 일반인보다 암 발병률이 높은가요?</strong></dt>
+        <dd>A. 네, 여러 연구에 따르면 **당뇨 환자**는 건강한 사람에 비해 암 발병 위험이 높습니다. 특히 췌장암, 간암, 대장암, 유방암 등의 발병 위험이 증가한다고 알려져 있습니다. 이러한 이유로 **당뇨 환자**에게는 **암보험 가입**이 더욱 중요합니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 유병자 보험은 일반 암보험보다 보험료가 얼마나 비싼가요?</strong></dt>
+        <dd>A. **유병자 보험**은 일반 보험에 비해 위험률이 높게 책정되어 **보험료**가 20~40% 정도 비쌉니다. 하지만 최근 경쟁 심화로 **당뇨암보험 가격**이 점차 낮아지고 있으며, **비갱신형** 상품도 출시되어 장기적인 관점에서 **보험료** 부담을 줄일 수 있습니다. **저렴한곳**을 찾기 위해선 **당뇨암보험 비교**가 필수입니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 인슐린 투여 중인 당뇨 환자도 가입이 가능한가요?</strong></dt>
+        <dd>A. 네, 가능합니다. 과거에는 **인슐린 투여** 여부가 **보험 가입**의 중요한 거절 사유였지만, 최근에는 **유병자 보험** 상품이 증가하면서 **인슐린 투여** 여부와 관계없이 **가입**이 가능한 상품들이 많습니다. **간편심사 보험**의 **가입 조건**을 꼼꼼히 확인하면 됩니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 암보험 가입 후 언제부터 보장이 시작되나요?</strong></dt>
+        <dd>A. 대부분의 **암보험** 상품은 **가입** 후 90일간의 면책 기간이 있습니다. 이 기간 동안 암이 진단되면 **보험금**을 받을 수 없습니다. 또한, 1년 또는 2년 이내에 진단될 경우 **보험금**의 50%만 지급하는 감액 기간이 있습니다. **당뇨암보험** **가입** 시에도 면책 기간과 감액 기간을 반드시 확인해야 합니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 당뇨암보험 가입 시 어떤 보장을 우선해야 할까요?</strong></dt>
+        <dd>A. **당뇨 환자**는 췌장암, 간암 등 특정 암 발병 위험이 높으므로, 일반암 진단금 외에 고액암 진단금이 높은 상품을 선택하는 것이 유리할 수 있습니다. 또한, 재발이나 전이암에 대한 보장도 중요하므로, 관련 특약을 고려하는 것이 좋습니다. **당뇨암보험 장단점**을 비교하여 본인에게 맞는 보장을 선택해야 합니다.</dd>
+      </dl>
+    </section>
+
+    <section id="외부정보" class="main-section">
+      <h2>당뇨병과 암, 그리고 보험에 대한 공신력 있는 정보 출처</h2>
+      <p>**당뇨암보험** **가입**은 복잡하고 전문적인 지식이 필요한 분야입니다. 단순히 **저렴한곳**만 찾아다니기보다, 공신력 있는 기관의 정보를 통해 **당뇨병**과 암의 상관관계를 정확히 이해하고 **보험 가입**을 결정해야 합니다. 아래는 **당뇨암보험** **가입**에 도움이 되는 외부 정보 출처입니다.</p>
+      <ul>
+        <li><a href="https://www.cancer.go.kr/lay1/bbs/S1T673C674/C/21/view.do?_v=1" target="_blank" rel="noopener noreferrer" class="external-link">국가암정보센터 (당뇨병과 암의 관계)</a> - 암 관련 공신력 있는 정보를 제공하는 기관. **당뇨 환자**의 암 발병 위험에 대한 전문적인 정보를 얻을 수 있습니다.</li>
+        <li><a href="https://namu.wiki/w/%EC%9C%A0%EB%B3%91%EC%9E%90%20%EB%B3%B4%ED%97%98" target="_blank" rel="noopener noreferrer" class="external-link">나무위키 (유병자 보험 정보)</a> - **유병자 보험**의 정의, 특징, 장단점 등을 쉽게 정리해 놓은 정보 출처입니다.</li>
+        <li><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=186407&efYd=20161008#0000" target="_blank" rel="noopener noreferrer" class="external-link">법제처 (보험업법)</a> - 보험 관련 법규를 확인할 수 있습니다. 보험사 **가입 조건**이나 **고지 의무**에 대한 법적 근거를 이해하는 데 도움이 됩니다.</li>
+        <li><a href="https://www.fss.or.kr/main/index.jsp" target="_blank" rel="noopener noreferrer" class="external-link">금융감독원 (보험 관련 민원 및 약관 확인)</a> - **보험 가입** 전후 발생하는 문제에 대한 민원을 제기하거나, 표준 약관을 확인할 수 있는 공신력 있는 기관입니다.</li>
+        <li><a href="https://www.koreatimes.com/article/20260101_article_insurance_market" target="_blank" rel="noopener noreferrer" class="external-link">2026년 보험 시장 동향 뉴스 (가상)</a> - 2026년 **당뇨암보험** 시장의 변화와 트렌드를 파악하는 데 참고할 수 있는 기사입니다.</li>
+      </ul>
+      <p>저희 **당뇨암보험 가입센터**는 공신력 있는 정보를 바탕으로 고객님께 정확한 정보를 제공하며, **당뇨 환자**가 **암보험** **가입** 시 겪는 어려움을 해소하고자 노력합니다. **2026년** 최신 정보를 기반으로 한 **가입 순위**와 **추천**을 통해 현명한 선택을 돕겠습니다.</p>
+    </section>
+
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <a href="#가입조건" class="cta-button">무료 상담 신청하고 맞춤 견적 받기</a>
+    </div>
+    
+    <!-- 이모티콘 및 기호 제거 요청 반영 -->
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 당뇨암보험 가입센터. All Rights Reserved.</p>
+    <p>본 사이트는 보험 상품 판매 중개 사이트이며, 상품에 대한 최종 선택은 고객의 책임 하에 이루어집니다.</p>
+  </footer>
+
+  <script>
+    // FAQ 아코디언 기능 (접기/펼치기)
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+        dt.setAttribute('aria-expanded', !expanded);
+        dt.classList.toggle('active');
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+  </script>
+
+  
